@@ -1,4 +1,4 @@
-require_relative 'player'
+require_relative 'game_turn'
 class Game
   attr_reader :name, :players
   def initialize(name)
@@ -13,12 +13,8 @@ class Game
   end
   def play
     @players.each do |p|
-      roll=roll_die
-      if roll < 3
-        p.blam
-      elsif roll > 4
-        p.w00t
-      end
+      #let the game_maker decide the fate
+      GameTurn.take_turn(p)
     end
   end
   def roll_die
@@ -30,8 +26,12 @@ if __FILE__ == $0
     @initial_health = 100
     @moe = Player.new("moe", @initial_health)
     @larry = Player.new("larry", @initial_health)
+    puts @moe
+    puts @larry
     @game.add_player(@moe)
     @game.add_player(@larry)
     puts "#{@game.name} has #{@game.players.size} players"
     @game.play
+    puts @moe
+    puts @larry
 end

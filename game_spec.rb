@@ -24,7 +24,7 @@ describe Game do
     @initial_health = 100
     @player = Player.new("moe", @initial_health)
     @game.add_player(@player)
-    Game.any_instance.stub(:roll_die).and_return(5)
+    GameTurn.stub(:roll_die).and_return(5)
     @game.play
     @player.health.should==115
   end
@@ -32,7 +32,7 @@ describe Game do
     @initial_health = 100
     @player = Player.new("moe", @initial_health)
     @game.add_player(@player)
-    Game.any_instance.stub(:roll_die).and_return(2)
+    GameTurn.stub(:roll_die).and_return(2)
     @game.play
     @player.health.should==90
   end
@@ -40,7 +40,7 @@ describe Game do
     @initial_health = 100
     @player = Player.new("moe", @initial_health)
     @game.add_player(@player)
-    Game.any_instance.stub(:roll_die).and_return(3)
+    GameTurn.stub(:roll_die).and_return(3)
     @game.play
     @player.health.should==100
   end
