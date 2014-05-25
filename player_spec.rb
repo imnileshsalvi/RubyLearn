@@ -50,14 +50,14 @@ describe Player do
       @avg_high_player=Player.new("larry",@avg_high)
     end
     it "strength > 125 is a strong player" do
-      @strong_player.strong?.should==true
+      @strong_player.should be_strong
     end    
     it "strength < 75 is a weak player" do
-      @weak_player.weak?.should==true
+      @weak_player.should be_weak
     end
     it "strength between 75 and 125 is neither weak nor a strong player" do
-      @avg_low_player.weak?.should==false
-      @avg_high_player.strong?.should==false
+      @avg_low_player.should_not be_weak
+      @avg_high_player.should_not be_strong
     end
   end
 
