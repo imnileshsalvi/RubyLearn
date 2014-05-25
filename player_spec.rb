@@ -37,5 +37,28 @@ describe Player do
     end
     
   end
+  
+  context 'player strength' do
+    before do
+      @strong=126
+      @strong_player=Player.new("larry",@strong)
+      @weak=74
+      @weak_player=Player.new("larry",@weak)
+      @avg_low=75
+      @avg_low_player=Player.new("larry",@avg_low)
+      @avg_high=125
+      @avg_high_player=Player.new("larry",@avg_high)
+    end
+    it "strength > 125 is a strong player" do
+      @strong_player.strong?.should==true
+    end    
+    it "strength < 75 is a weak player" do
+      @weak_player.weak?.should==true
+    end
+    it "strength between 75 and 125 is neither weak nor a strong player" do
+      @avg_low_player.weak?.should==false
+      @avg_high_player.strong?.should==false
+    end
+  end
 
 end

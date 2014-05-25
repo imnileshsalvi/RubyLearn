@@ -16,4 +16,10 @@ class Player
   def blam
     @health-=10
   end
+  def strong?
+    @health>125
+  end
+  def weak?
+    @health<75
+  end
 end
