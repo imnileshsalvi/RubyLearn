@@ -15,11 +15,6 @@ describe Game do
     @game.add_player(@player)
     @game.players.size.should==1
   end
-  it "rolls a die between 1 and 6" do
-    rolled=@game.roll_die
-    rolled.should >=1
-    rolled.should <=6
-  end
   it "plays the game - high roll" do
     @initial_health = 100
     @player = Player.new("moe", @initial_health)

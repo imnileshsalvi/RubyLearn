@@ -17,9 +17,6 @@ class Game
       GameTurn.take_turn(p)
     end
   end
-  def roll_die
-    rand(1..6)
-  end
 end
 if __FILE__ == $0
     @game = Game.new("Knuckleheads")
