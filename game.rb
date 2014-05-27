@@ -1,9 +1,10 @@
 require_relative 'game_turn'
 class Game
-  attr_reader :name, :players
+  attr_reader :name, :players, :ntimes
   def initialize(name)
     @name=name.upcase
     @players=[]
+    @ntimes=0
   end
   def to_s
     "#{@name} is a fun game."
@@ -11,11 +12,17 @@ class Game
   def add_player(player)
     @players << player
   end
-  def play
-    @players.each do |p|
-      #let the game_maker decide the fate
-      GameTurn.take_turn(p)
+  def play(n)
+    1.upto(n) do |round|
+      if __FILE__==$0 then puts "Round #{round}: " end
+      @players.each do |p|
+        #let the game_maker decide the fate
+        GameTurn.take_turn(p)
+        if __FILE__==$0 then puts p end
+        @ntimes=n
+      end      
     end
+    if __FILE__==$0 then puts "GAME OVER!!!" end
   end
 end
 if __FILE__ == $0
@@ -28,7 +35,7 @@ if __FILE__ == $0
     @game.add_player(@moe)
     @game.add_player(@larry)
     puts "#{@game.name} has #{@game.players.size} players"
-    @game.play
+    @game.play(3)
     puts @moe
     puts @larry
 end
