@@ -12,6 +12,21 @@ class Game
   def add_player(player)
     @players << player
   end
+  def print_stats(rounds)
+    strong, weak = @players.partition {|p| p.health > 100}
+    puts "At the end of #{rounds} rounds we have #{strong.size} strong player(s) and #{weak.size} weak player(s)"
+    puts "#{strong.size} strong players : "
+    strong.each { |p| puts "#{p.name} (#{p.health})"}
+    puts "#{weak.size} wimpy players : "
+    weak.each { |p| puts "#{p.name} (#{p.health})"}
+  end
+  def print_high_scores
+    healthy = @players.sort {|p,q| q.score<=>p.score}
+    puts "Top players (according to their scores):"
+    0.upto(1) do |n|
+      puts "#{healthy[n].name} (#{healthy[n].score})"
+    end
+  end
   def play(n)
     1.upto(n) do |round|
       if __FILE__==$0 then puts "Round #{round}: " end
@@ -35,7 +50,10 @@ if __FILE__ == $0
     @game.add_player(@moe)
     @game.add_player(@larry)
     puts "#{@game.name} has #{@game.players.size} players"
-    @game.play(3)
+    rounds=5
+    @game.play(rounds)
     puts @moe
     puts @larry
+    @game.print_stats(rounds)
+    @game.print_high_scores
 end

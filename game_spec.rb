@@ -39,12 +39,17 @@ describe Game do
     @game.play(1) #
     @player.health.should==100
   end
-  it "plays the game for specified number of times" do
-    @initial_health = 100
-    @player = Player.new("moe", @initial_health)
-    @game.add_player(@player)
-    GameTurn.stub(:roll_die).and_return(3)
-    @game.play(2) #
-    @game.ntimes.should==2
+=begin
+  it "prints the stats" do
+    @player1 = Player.new("moe", 120)
+    @game.add_player(@player1)
+    @player2 = Player.new("joe", 101)
+    @game.add_player(@player2)
+    @player3 = Player.new("poe", 100)
+    @game.add_player(@player3)
+    @game.print_stats(1)
+    @game.strong.size.should==2
+    @game.weak.size.should==1
   end
+=end
 end
